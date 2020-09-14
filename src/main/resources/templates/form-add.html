@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/css/checkbox.css}">
+</head>
+<body>
+<form method="post">
+    <input type="text" name="name" placeholder="Name"><br>
+    <input type="text" name="surname" placeholder="Surname"><br>
+    <input type="text" name="email" placeholder="Email"><br>
+    <input type="text" name="password" placeholder="Password" ><br>
+    Status: <label class="switch">
+    <input type="checkbox" name="status" value="1"/>
+    <span class="slider"></span>
+</label><br>
+
+    <select name="country">
+        <option th:each="country : ${countries}"
+                th:value="${country}" th:text="${country}"></option>
+    </select><br>
+    <input type="submit" name="Save"><br>
+</form>
+</body>
+</html>

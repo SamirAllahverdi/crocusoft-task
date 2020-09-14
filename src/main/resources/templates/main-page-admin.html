@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/checkbox.css}">
+    <link rel="stylesheet" th:href="@{/css/main-header.css}">
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header class="main-header">
+   <span class="main-header-username" style="margin-right: 7px; color: white; font-size: medium"
+         th:text="${fullName}"></span><br>
+    <div class="main-header-profile-wrapper">
+        <button class="log-out-btn" type="button"><a th:href="@{/logout}">Logout</a></button>
+    </div>
+</header>
+
+
+<!--                  SEARCH                       -->
+<form method="post">
+    <div class="md-form active-cyan-2 mb-3" style="margin-top: 100px;">
+        <input class="form-control" name="txt" type="text" placeholder="Search" aria-label="Search">
+        <input type="submit" name="Save Changes">
+    </div>
+</form>
+
+<!--                  DROP DOWN BOX                 -->
+<div class="dropdown" style="margin-top: 100px;">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">SEARCH BY COUNTRY
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" th:href="@{/main-page-admin-country/AZERBAIJAN}">AZERBAIJAN</a>
+        <a class="dropdown-item" th:href="@{/main-page-admin-country/TURKEY}">TURKEY</a>
+        <a class="dropdown-item" th:href="@{/main-page-admin-country/PAKISTAN}">PAKISTAN</a>
+    </div>
+</div>
+<br>
+
+
+<a class="btn btn-primary" th:href="@{/add}" role="button" style="margin-top: 20px;">ADD NEW USER</a>
+<!--                  TABLE                           -->
+<table class="table" style="margin-top: 100px;">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">NAME</th>
+        <th scope="col">SURNAME</th>
+        <th scope="col">COUNTRY</th>
+        <th scope="col">STATUS</th>
+        <th scope="col">EDIT</th>
+    </tr>
+    </thead>
+    <tbody th:each="list : ${users}">
+    <tr>
+        <td th:text="${list.getName()}"></td>
+        <td th:text="${list.getSurname()}"></td>
+        <td th:text="${list.getCountry()}"></td>
+        <td th:text="${list.getStatus()} == 1 ? 'ON' : 'OFF'"></td>
+        <td><a class="btn btn-primary" th:href="@{/edit/{id} (id = ${list.getId()})}" role="button">Edit</a>
+            <a class="btn btn-primary" th:href="@{/delete/{id} (id = ${list.getId()})}" role="button">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 100px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #92a8d1;
+    align-items: center;
+}
+
+
+.main-header-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.main-header-profile-wrapper {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+    cursor: pointer;
+}
+
+
+.main-header-profile-credentials {
+    color: white;
+    display: inline-block;
+    text-align: right;
+    margin-right: 20px;
+    border-bottom: 1px solid white;
+    padding-bottom: 2px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.log-out-btn {
+    text-decoration: none;
+    color: #828282;
+    margin-right: 100px;
+}
+
+
+.main-header-username {
+    display: block;
+    margin-bottom: 5px;
+}
+
+
+
+

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/checkbox.css}">
+    <link rel="stylesheet" th:href="@{/css/main-header.css}">
+    <title>Document</title>
+</head>
+<body>
+
+<header class="main-header">
+   <span class="main-header-username" style="margin-right: 7px; color: white; font-size: medium"
+         th:text="${fullName}"></span><br>
+    <div class="main-header-profile-wrapper">
+        <button class="log-out-btn" type="button"><a th:href="@{/logout}">Logout</a></button>
+    </div>
+</header>
+
+      <h1 th:text="Welcome + ', ' + ${fullName}" style="margin-top: 100px"></h1>
+
+</body>
+</html>
