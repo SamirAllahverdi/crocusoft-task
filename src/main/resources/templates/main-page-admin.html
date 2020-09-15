@@ -21,7 +21,7 @@
 
 
 <!--                  SEARCH                       -->
-<form method="post">
+<form  th:action="@{/main-page-admin}" method="post">
     <div class="md-form active-cyan-2 mb-3" style="margin-top: 100px;">
         <input class="form-control" name="txt" type="text" placeholder="Search" aria-label="Search">
         <input type="submit" name="Save Changes">
@@ -50,7 +50,7 @@
         <th scope="col">NAME</th>
         <th scope="col">SURNAME</th>
         <th scope="col">COUNTRY</th>
-        <th scope="col">STATUS</th>
+        <th scope="col">PERMISSION</th>
         <th scope="col">EDIT</th>
     </tr>
     </thead>

@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -24,21 +25,25 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findAll() {
-        return userRepo.findAllByAndRoleIsNotAndStatusIsGreaterThan(ROLE.ADMIN.name(),-1);
+        return userRepo.findAllByAndRoleIsNotAndStatusIsGreaterThan(ROLE.ADMIN.name(), -1);
     }
 
     public List<User> findAllByCountry(String country) {
-        return userRepo.findAllByCountryAndStatusIsGreaterThanAndRoleIsNot(COUNTRY.valueOf(country),-1,ROLE.ADMIN.name());
+        return userRepo.findAllByCountryAndStatusIsGreaterThanAndRoleIsNot(COUNTRY.valueOf(country), -1, ROLE.ADMIN.name());
     }
 
     public List<User> findByNameContainsIgnoreCase(String txt) {
-        return userRepo.findByNameContainsIgnoreCaseAndStatusIsGreaterThanAndRoleIsNot(txt,-1, ROLE.ADMIN.name());
+        return userRepo.findByNameContainsIgnoreCaseAndStatusIsGreaterThanAndRoleIsNot(txt, -1, ROLE.ADMIN.name());
     }
 
     public User findById(Long id) {
         return userRepo.findById(id).orElseThrow(() -> new UsernameNotFoundException(
                 String.format("User: %s isn't found in our DB with that id", id)
         ));
+    }
+
+    public Optional<User> findByEmail(String email) {
+        return userRepo.findByEmail(email);
     }
 
     public void delete(Long id) {

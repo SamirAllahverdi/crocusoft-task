@@ -13,18 +13,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable()
+        http
                 .authorizeRequests()
-                .antMatchers("/h2/**").permitAll()
                 .antMatchers("/main-page-user").hasRole(ROLE.USER.name())
                 .antMatchers("/main-page-admin").hasRole(ROLE.ADMIN.name())
                 .anyRequest().authenticated().and()
                 .formLogin()
                 .defaultSuccessUrl("/default");
-
-        http
-                .headers()
-                .frameOptions()
-                .disable();
     }
 }

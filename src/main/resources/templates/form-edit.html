@@ -17,11 +17,11 @@
     <input type="text" name="email" th:value="*{email}"><br>
     <input type="hidden" name="password" th:value="*{password} "><br>
 
-    <select name="country">
-        <option th:each="country : ${countries}" th:value="*{country}"></option>
+    <select name="country"  th:field="*{country}">
+        <option th:each="country : ${countries}" th:value="${country}" th:text="${country}"></option>
     </select><br>
 
-    <label class="switch">
+    STATUS: <label class="switch">
         <input type="checkbox" name="status" th:checked="*{status} == 1 ? true : false"  th:value="1"/>
         <span class="slider"></span>
     </label><br>
