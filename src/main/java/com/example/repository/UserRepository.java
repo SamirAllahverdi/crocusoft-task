@@ -12,7 +12,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    List<User> findByNameContainsIgnoreCaseAndStatusIsGreaterThanAndRoleIsNot(String txt, int status, String  role);
+    List<User> findAllByFullNameContainsIgnoreCaseAndStatusIsGreaterThanAndRoleIsNot(String txt, int status, String  role);
 
     Optional<User> findByEmail(String email);
 

@@ -21,7 +21,7 @@ public class UserController {
         UsernamePasswordAuthenticationToken userToken = (UsernamePasswordAuthenticationToken) p ;
         User user = (User) userToken.getPrincipal();
 
-        model.addAttribute("fullName", String.format("%s %s",user.getName(), user.getSurname()));
+        model.addAttribute("fullName", user.getFullName());
         return "main-page-user";
     }
 

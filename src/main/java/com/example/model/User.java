@@ -10,6 +10,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -26,28 +28,25 @@ public class User implements UserDetails {
 
     private String email;
 
+    @Size(min = 3, message = "Password must be at least three characters long")
     private String password;
 
-    private String name;
-
-    private String surname;
+    private String fullName;
 
     private int status;
 
     @Enumerated(EnumType.STRING)
     private COUNTRY country;
 
-    private String role;
+    private String role = ROLE.USER.name();
 
-    public User(long id, String email, String password, String name, String surname, COUNTRY country, int status) {
+    public User(long id, String email, String password, String fullName, COUNTRY country, int status) {
         this.id = id;
         this.email = email;
         this.password = password;
-        this.name = name;
-        this.surname = surname;
+        this.fullName = fullName;
         this.status = status;
         this.country = country;
-        this.role = ROLE.USER.name();
     }
 
     @Override

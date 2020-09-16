@@ -19,11 +19,11 @@
     </div>
 </header>
 
-
 <!--                  SEARCH                       -->
-<form  th:action="@{/main-page-admin}" method="post">
+<form th:action="@{/main-page-admin}" method="post">
     <div class="md-form active-cyan-2 mb-3" style="margin-top: 100px;">
-        <input class="form-control" name="txt" type="text" placeholder="Search" aria-label="Search">
+        <input class="form-control" name="txt" type="text" placeholder="Search" aria-label="Search" style="width: 50%;"
+               th:value="${txt}"><br>
         <input type="submit" name="Save Changes">
     </div>
 </form>
@@ -41,25 +41,31 @@
 </div>
 <br>
 
+<div class="wrapper">
+    <a class="btn btn-primary" th:href="@{/add}" role="button" style="margin-top: 20px;">ADD NEW USER</a>
+</div>
 
-<a class="btn btn-primary" th:href="@{/add}" role="button" style="margin-top: 20px;">ADD NEW USER</a>
 <!--                  TABLE                           -->
-<table class="table" style="margin-top: 100px;">
+<table class="table" style="margin-top: 20px;">
     <thead class="thead-dark">
     <tr>
         <th scope="col">NAME</th>
         <th scope="col">SURNAME</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">OPERATIONS</th>
+        <th scope="col">PERMISSIONS</th>
         <th scope="col">COUNTRY</th>
-        <th scope="col">PERMISSION</th>
         <th scope="col">EDIT</th>
     </tr>
     </thead>
     <tbody th:each="list : ${users}">
     <tr>
-        <td th:text="${list.getName()}"></td>
-        <td th:text="${list.getSurname()}"></td>
-        <td th:text="${list.getCountry()}"></td>
+        <td th:text="${list.getFullName().split(' ')[0]}"></td>
+        <td th:text="${list.getFullName().split(' ')[1]}"></td>
+        <td th:text="${list.getEmail()}"></td>
+        <td></td>
         <td th:text="${list.getStatus()} == 1 ? 'ON' : 'OFF'"></td>
+        <td th:text="${list.getCountry()}"></td>
         <td><a class="btn btn-primary" th:href="@{/edit/{id} (id = ${list.getId()})}" role="button">Edit</a>
             <a class="btn btn-primary" th:href="@{/delete/{id} (id = ${list.getId()})}" role="button">Delete</a>
         </td>

@@ -13,11 +13,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.
+                csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/main-page-user").hasRole(ROLE.USER.name())
                 .antMatchers("/main-page-admin").hasRole(ROLE.ADMIN.name())
-                .anyRequest().authenticated().and()
+                .anyRequest().authenticated()
+                .and()
                 .formLogin()
                 .defaultSuccessUrl("/default");
     }

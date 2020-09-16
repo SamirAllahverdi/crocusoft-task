@@ -9,24 +9,40 @@
 </head>
 <body>
 
-<form th:action="@{/edit}" method="post" th:object="${user}">
+<!--<form >-->
+<!--    First name : <input type="text" name="txtFirstName" /> <br><br>-->
+<!--    Last name : <input type="text" name="txtLastName" /> <br><br>-->
+<!--    Full name : <input type="text" name="txtFullName"  > <br><br>-->
+<!--</form>-->
+<form th:action="@{/edit}" oninput="fullName.value = name.value +' '+ surname.value" th:object="${user}" method="post">
 
-    <input type="hidden" name="id" th:value="*{id} "><br>
-    <input type="text" name="name" th:value="*{name}"><br>
-    <input type="text" name="surname" th:value="*{surname}"><br>
-    <input type="text" name="email" th:value="*{email}"><br>
-    <input type="hidden" name="password" th:value="*{password} "><br>
+    <!--                NAME              -->
+    <input type="text" name="name" th:value="*{fullName.split(' ')[0]}" required><br>
 
-    <select name="country"  th:field="*{country}">
+    <!--                SURNAME              -->
+    <input type="text" name="surname" th:value="*{fullName.split(' ')[1]}" required><br>
+
+    <!--                EMAIL              -->
+    <p class="error-message" style="color: red"
+       th:each="error: ${#fields.errors('email')}" th:text="${error}">
+        Validation error</p>
+    <input type="email" name="email" th:value="*{email}" required><br>
+
+    <!--                COUNTRY              -->
+    <select name="country" th:field="*{country}">
         <option th:each="country : ${countries}" th:value="${country}" th:text="${country}"></option>
     </select><br>
 
-    STATUS: <label class="switch">
-        <input type="checkbox" name="status" th:checked="*{status} == 1 ? true : false"  th:value="1"/>
+    <!--                STATUS              -->
+    PERMISSIONS:
+    <label class="switch">
+        <input type="checkbox" name="status" th:checked="*{status} == 1 ? true : false" th:value="1"/>
         <span class="slider"></span>
     </label><br>
 
-    <input type="hidden" name="role" th:value="*{role} "><br>
+    <input type="hidden" name="id" th:value="*{id} ">
+    <input type="hidden" name="password" th:value="*{password} ">
+    <input type="hidden" name="fullName" th:value="*{fullName}"><br>
 
     <input type="submit" name="Save Changes"><br>
 </form>

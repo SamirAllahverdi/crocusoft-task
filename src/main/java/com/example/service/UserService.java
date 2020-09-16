@@ -33,7 +33,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findByNameContainsIgnoreCase(String txt) {
-        return userRepo.findByNameContainsIgnoreCaseAndStatusIsGreaterThanAndRoleIsNot(txt, -1, ROLE.ADMIN.name());
+        return userRepo.findAllByFullNameContainsIgnoreCaseAndStatusIsGreaterThanAndRoleIsNot(txt,-1, ROLE.ADMIN.name());
     }
 
     public User findById(Long id) {

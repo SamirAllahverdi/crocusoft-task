@@ -20,11 +20,15 @@ public class MyCommandLineRunner {
     @Bean
     public CommandLineRunner autoRun() {
         return args -> {
-            service.save(new User(1,"mehi@gmail.com", encoder.encode("123"), "Mehdi", "Eliyev",1, COUNTRY.AZERBAIJAN, ROLE.ADMIN.name()));
+            service.save(new User(1, "mehi@gmail.com", encoder.encode("123"), "Mehdi Eliyev", 1, COUNTRY.AZERBAIJAN, ROLE.ADMIN.name()));
 
-            service.save(new User(2,"qezi@gmail.com",encoder.encode("123"), "Qezenfer", "Qasimov", COUNTRY.AZERBAIJAN ,1));
-            service.save(new User(3,"eli@gmail.com",encoder.encode("123"), "Eliabbas", "Mecidov", COUNTRY.TURKEY, 1));
-            service.save(new User(4,"hesen@gmail.com",encoder.encode("123"),  "Heseneli", "Haqverdiyev", COUNTRY.PAKISTAN, 0));
+            service.save(new User(2, "qezi@gmail.com", encoder.encode("123"), "Qezenfer Qasimov", COUNTRY.AZERBAIJAN, 1));
+            service.save(new User(3, "eli@gmail.com", encoder.encode("123"), "Eliabbas Mecidov", COUNTRY.TURKEY, 1));
+
+            service.save(new User(4, "fr@gmail.com", encoder.encode("123"), "Ehmed Kerim", COUNTRY.TURKEY, 0));
+            service.save(new User(5, "hesen@gmail.com", encoder.encode("123"), "Heseneli Haqverdiyev", COUNTRY.PAKISTAN, 0));
+
+            service.save(new User(6, "al@gmail.com", encoder.encode("123"), "Qoceli Ferda", COUNTRY.AZERBAIJAN, -1));
         };
     }
 
