@@ -69,7 +69,7 @@ public class ModificationController {
     }
 
     @PostMapping("/add")
-    public String postAdd(@Valid User user, BindingResult result) {
+    public String postAdd(@Valid @ModelAttribute("emptyUser") User user, BindingResult result) {
 
         if (hasErrorAdd(user.getEmail(), result)) {
             return "form-add";
@@ -92,11 +92,14 @@ public class ModificationController {
     private boolean hasErrorAdd(String email, BindingResult result) {
         if (result.hasErrors() && userService.findByEmail(email).isPresent()) {
             result.rejectValue("email", "user.email.exists", "There is already an account registered with that email");
+            log.info("both");
             return true;
         } else if (result.hasErrors()) {
+            log.info("password");
             return true;
         } else if (userService.findByEmail(email).isPresent()) {
             result.rejectValue("email", "user.email.exists", "There is already an account registered with that email");
+            log.info("email");
             return true;
         } else {
             return false;
@@ -104,7 +107,6 @@ public class ModificationController {
     }
 
     private boolean hasErrorEdit(long id, String email, BindingResult result) {
-
 
         if (!email.equals(userService.findById(id).getEmail()) && userService.findByEmail(email).isPresent()) {
             result.rejectValue("email", "user.email.exists", "There is already an account registered with that email");
