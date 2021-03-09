@@ -6,24 +6,22 @@ import com.example.enums.ROLE;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jooq.EnumType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Collection;
 
 
-@Entity(name = "users")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+
     private long id;
 
     private String email;
@@ -35,7 +33,6 @@ public class User implements UserDetails {
 
     private int status;
 
-    @Enumerated(EnumType.STRING)
     private COUNTRY country;
 
     private String role = ROLE.USER.name();

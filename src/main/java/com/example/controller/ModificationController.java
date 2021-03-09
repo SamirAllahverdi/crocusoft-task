@@ -56,9 +56,10 @@ public class ModificationController {
         log.info("USER IN EDIT " + user);
         if (hasErrorEdit(user.getId(), user.getEmail(), result)) {
             return "form-edit";
+        }else {
+            userService.update(user);
         }
 
-        userService.save(user);
         return "redirect:/main-page-admin";
     }
 
@@ -74,7 +75,7 @@ public class ModificationController {
         if (hasErrorAdd(user.getEmail(), result)) {
             return "form-add";
         }
-//        TO WHAT EXTENT, IT IS CORRECT?
+
         user.setPassword(encoder.encode(user.getPassword()));
         userService.save(user);
 

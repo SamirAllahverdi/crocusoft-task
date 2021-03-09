@@ -13,7 +13,7 @@ public class PasswordConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new DelegatingPasswordEncoder("pbkdf2",
-                new HashMap<>(11) {{
+                new HashMap(11) {{
                     put("pbkdf2", new org.springframework.security.crypto.password.Pbkdf2PasswordEncoder());
                 }}
         );
